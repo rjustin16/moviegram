@@ -29,12 +29,24 @@ const Form = ({currentId, setCurrentId}) => {
 
     if(currentId){
       dispatch(updatePost(currentId, postData));
+      
     } else {
       dispatch(createPost(postData));
+      
     }
+    clear();
 
   };
-  const clear = () => {};
+  const clear = () => {
+    setCurrentId(null);
+    setPostData({
+      creator: "",
+      title: "",
+      synopsis: "",
+      tags: "",
+      imageUrl: "",
+    });
+  };
 
   return (
     <Paper className={classes.paper}>
@@ -44,7 +56,7 @@ const Form = ({currentId, setCurrentId}) => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">Creating a Movie</Typography>
+        <Typography variant="h6">{currentId ? 'Editing' : 'Adding'} a Movie</Typography>
         <TextField
           name="creator"
           variant="outlined"
