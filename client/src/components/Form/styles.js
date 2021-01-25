@@ -10,6 +10,9 @@ export default makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
   },
+  empty:{
+    display: "none",
+  },
   form: {
     display: "flex",
     flexWrap: "wrap",

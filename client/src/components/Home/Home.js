@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import { Container, Grow, Grid } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import useStyles from "../../styles"
+import useStyles from "../../styles";
 import { getPosts } from "../../actions/posts";
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
@@ -10,13 +10,15 @@ const Home = () => {
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
   const classes = useStyles();
+
   useEffect(() => {
     dispatch(getPosts());
   }, [currentId, dispatch]);
+
   return (
     <div>
       <Grow in>
-        <Container >
+        <Container>
           <Grid
             container
             justify="space-between"
@@ -29,14 +31,12 @@ const Home = () => {
             </Grid>
             <Grid item xs={12} sm={4}>
               <MovieSearch currentId={currentId} setCurrentId={setCurrentId} />
-              <Form currentId={currentId} setCurrentId={setCurrentId} />
+              <Form margin={5} currentId={currentId} setCurrentId={setCurrentId} />
             </Grid>
           </Grid>
         </Container>
       </Grow>
     </div>
-  )
-}
-export default Home
-
-
+  );
+};
+export default Home;
