@@ -1,49 +1,51 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Button, Typography, Paper } from "@material-ui/core";
-import FileBase from "react-file-base64";
+import { TextField, Button, Typography, Paper, List } from "@material-ui/core";
+
 import { useDispatch, useSelector } from "react-redux";
-
-
 
 import useStyles from "./styles";
 import { createPost, updatePost } from "../../actions/posts";
-
-const Form = ({currentId, setCurrentId}) => {
+const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
     title: "",
     synopsis: "",
     tags: "",
     imageUrl: "",
   });
-  const post = useSelector((state) => currentId ? state.posts.find((p)=> p._id === currentId): null);
+
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((p) => p._id === currentId) : null
+  );
   const classes = useStyles();
+  const user = JSON.parse(localStorage.getItem("profile"));
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem('profile'));
 
   useEffect(() => {
-    if(post) setPostData(post);
-  },[post])
+    if (post) setPostData(post);
+  }, [post]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if(currentId === 0){
-      dispatch(createPost({...postData, name: user?.result?.name}));
+    if (currentId === 0) {
+      dispatch(createPost({ ...postData, name: user?.result?.name }));
       clear();
     } else {
-     
-      dispatch(updatePost(currentId, {...postData, name: user?.result?.name}));
+      dispatch(
+        updatePost(currentId, { ...postData, name: user?.result?.name })
+      );
       clear();
     }
   };
-  if(!user?.result?.name){
-    return(
+
+  if (!user?.result?.name) {
+    return (
       <Paper className={classes.paper}>
-        <Typography variant='h6' align='center'>
-        Please signup in to use the watch list. 
+        <Typography variant="h6" align="center">
+          Please Sign In to participate in the Watchlist
         </Typography>
       </Paper>
-    )
+    );
   }
   const clear = () => {
     setCurrentId(0);
@@ -63,7 +65,9 @@ const Form = ({currentId, setCurrentId}) => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">{currentId ? 'Editing' : 'Adding'} a Movie</Typography>
+        <Typography variant="h6">
+          {currentId ? "Editing" : "Adding"} a Movie
+        </Typography>
 
         <TextField
           name="title"
@@ -89,16 +93,18 @@ const Form = ({currentId, setCurrentId}) => {
           label="tags"
           fullWidth
           value={postData.tags}
-          onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })}
+          onChange={(e) =>
+            setPostData({ ...postData, tags: e.target.value.split(",") })
+          }
         />
         <div className={classes.fileInput}>
-          <FileBase
+          {/* <FileBase
             type="file"
             multiple={false}
             onDone={({ base64 }) =>
               setPostData({ ...postData, imageUrl: base64 })
             }
-          />
+          /> */}
           <Button
             className={classes.buttonSubmit}
             variant="contained"
