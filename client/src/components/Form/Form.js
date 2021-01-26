@@ -31,15 +31,15 @@ const Form = ({ currentId, setCurrentId }) => {
       clear();
     }
   };
-  if(!user?.result?.name) {
-    return (
-      <Paper className={classes.paper}>
-        <Typography variant="h6" align="center">
-          Please Sign In To Participate In The Watchlist
-        </Typography>
-      </Paper>
-    )
-  }
+  // if(!user?.result?.name) {
+  //   return (
+  //     <Paper className={classes.paper}>
+  //       <Typography variant="h6" align="center">
+  //         Please Sign In To Participate In The Watchlist
+  //       </Typography>
+  //     </Paper>
+  //   )
+  // }
   const clear = () => {
     setCurrentId(0);
     setPostData({
