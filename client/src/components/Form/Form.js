@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
+
 import { useDispatch, useSelector } from "react-redux";
+
 import useStyles from "./styles";
 import { createPost, updatePost } from "../../actions/posts";
 const Form = ({ currentId, setCurrentId }) => {
@@ -10,17 +12,21 @@ const Form = ({ currentId, setCurrentId }) => {
     tags: "",
     imageUrl: "",
   });
+
   const post = useSelector((state) =>
     currentId ? state.posts.find((p) => p._id === currentId) : null
   );
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem("profile"));
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (post) setPostData(post);
   }, [post]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (currentId === 0) {
       dispatch(createPost({ ...postData, name: user?.result?.name }));
       clear();
@@ -31,15 +37,7 @@ const Form = ({ currentId, setCurrentId }) => {
       clear();
     }
   };
-  // if(!user?.result?.name) {
-  //   return (
-  //     <Paper className={classes.paper}>
-  //       <Typography variant="h6" align="center">
-  //         Please Sign In To Participate In The Watchlist
-  //       </Typography>
-  //     </Paper>
-  //   )
-  // }
+
   const clear = () => {
     setCurrentId(0);
     setPostData({
@@ -49,6 +47,7 @@ const Form = ({ currentId, setCurrentId }) => {
       imageUrl: "",
     });
   };
+
   return (
     <Paper className={currentId ? `${classes.paper}` : `${classes.empty}`}>
       <form
@@ -58,8 +57,9 @@ const Form = ({ currentId, setCurrentId }) => {
         onSubmit={handleSubmit}
       >
         <Typography variant="h6">
-          Edit Tags
+          {currentId ? "Editing" : "Adding"} a Movie
         </Typography>
+
         <TextField
           name="tags"
           variant="outlined"
@@ -95,4 +95,5 @@ const Form = ({ currentId, setCurrentId }) => {
     </Paper>
   );
 };
+
 export default Form;

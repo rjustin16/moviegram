@@ -10,7 +10,6 @@ const Home = () => {
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
   const classes = useStyles();
-
   useEffect(() => {
     dispatch(getPosts());
   }, [currentId, dispatch]);
@@ -24,14 +23,15 @@ const Home = () => {
             justify="space-between"
             alignItems="stretch"
             spacing={3}
+            overflow="hidden"
             className={classes.mainContainer}
           >
-            <Grid item xs={12} sm={7}>
+            <Grid item xs={12} md={7}>
               <Posts setCurrentId={setCurrentId} />
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} md={4}>
               <MovieSearch currentId={currentId} setCurrentId={setCurrentId} />
-              <Form margin={5} currentId={currentId} setCurrentId={setCurrentId} />
+              <Form currentId={currentId} setCurrentId={setCurrentId} />
             </Grid>
           </Grid>
         </Container>

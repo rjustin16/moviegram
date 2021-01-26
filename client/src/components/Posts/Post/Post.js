@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import {
   Card,
   CardActions,
@@ -7,7 +7,7 @@ import {
   Button,
   Typography,
 } from "@material-ui/core";
-import {StoreContext} from "../../../reducers/search"
+
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import moment from "moment";

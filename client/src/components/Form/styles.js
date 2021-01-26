@@ -1,4 +1,3 @@
-  
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
@@ -6,12 +5,13 @@ export default makeStyles((theme) => ({
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
     },
+    width: "100%",
+    maxWidth: "100%",
+    backgroundColor: theme.palette.background.paper,
   },
   paper: {
     padding: theme.spacing(2),
-  },
-  empty:{
-    display: "none",
+    marginTop: 5,
   },
   form: {
     display: "flex",
@@ -25,9 +25,7 @@ export default makeStyles((theme) => ({
   buttonSubmit: {
     marginBottom: 10,
   },
-  root: {
-    width: "100%",
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+  empty: {
+    display: "none",
   },
 }));
