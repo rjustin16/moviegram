@@ -4,6 +4,8 @@ export default makeStyles((theme) => ({
   mainContainer: {
     display: "flex",
     alignItems: "center",
+    overflowY: "scroll",
+    height: "80vh",
   },
   smMargin: {
     margin: theme.spacing(1),
@@ -11,5 +13,10 @@ export default makeStyles((theme) => ({
   actionDiv: {
     textAlign: "center",
   },
-
+  form: {
+    margin: 5,
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+  },
 }));

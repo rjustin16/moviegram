@@ -5,3 +5,7 @@ background-attachment: fixed;
 background-size: cover;
 
 }
+
+::-webkit-scrollbar {
+    display: none;
+  }
