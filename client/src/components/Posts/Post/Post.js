@@ -18,8 +18,9 @@ import {
   likePost,
   dislikePost,
   watchPost,
+  bookMarkPost,
 } from "../../../actions/posts";
-import { Likes, DisLikes, Watches } from "./Reactions.js";
+import { Likes, DisLikes, Watches, BookMark } from "./Reactions.js";
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -87,6 +88,14 @@ const Post = ({ post, setCurrentId }) => {
           onClick={() => dispatch(watchPost(post._id))}
         >
           <Watches post={post} user={user} />
+        </Button>
+        <Button
+          size="small"
+          color="primary"
+          disabled={!user?.result}
+          onClick={() => dispatch(bookMarkPost(post._id))}
+        >
+          <BookMark post={post} user={user} />
         </Button>
         {(user?.result?.googleId === post?.creator ||
           user?.result?._id === post?.creator) && (

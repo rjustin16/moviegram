@@ -12,7 +12,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import decode from "jwt-decode";
 import useStyles from "./styles";
-import { Likes, DisLikes, Watches } from "./Reactions.js";
+import { Likes, DisLikes, Watches, BookMark } from "./Reactions.js";
 import { getPosts } from "../../actions/posts";
 import icon from "../../images/movie-night.png";
 import { useStoreContext } from "../../reducers/search";
@@ -21,6 +21,7 @@ import { CLEAR_SEARCH } from "../../constants/actionTypes";
 let likecounter = 0;
 let disLikecounter = 0;
 let watchcounter = 0;
+let bookmarkcounter = 0;
 const Navbar = () => {
   const dataToFilter = useSelector((state) => state.posts);
   const [state, clearState] = useStoreContext();
@@ -85,6 +86,25 @@ const Navbar = () => {
     }
   };
 
+  const bookMarkFilter = () => {
+    if (user.result.googleId) {
+      id = user.result.googleId;
+    } else {
+      id = user.result._id;
+    }
+    const r = dataToFilter.filter((d) => d.bookMark.includes(id));
+    bookmarkcounter = bookmarkcounter + 1;
+
+    console.log(bookmarkcounter, "bookmarkcounter above if statement");
+    if (bookmarkcounter % 2 === 0) {
+      console.log(bookmarkcounter, "watch if statement");
+      dispatch(getPosts());
+    } else {
+      dispatch({ type: FETCH_ALL, payload: r });
+      console.log(bookmarkcounter, "watch else statement");
+    }
+  };
+
   const logout = () => {
     clearState({
       type: CLEAR_SEARCH,
@@ -141,6 +161,13 @@ const Navbar = () => {
                 onClick={() => watchFilter()}
               >
                 <Watches watchcounter={watchcounter} />
+              </Button>
+              <Button
+                size="small"
+                color="primary"
+                onClick={() => bookMarkFilter()}
+              >
+                <BookMark bookmarkcounter={bookmarkcounter} />
               </Button>
             </CardActions>
             <div>

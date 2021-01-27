@@ -65,3 +65,12 @@ export const watchPost = (id) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const bookMarkPost = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.bookMarkPost(id);
+    dispatch({ type: UPDATE, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};

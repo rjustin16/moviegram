@@ -19,6 +19,10 @@ const postSchema = mongoose.Schema({
     type: [String],
     default: [],
   },
+  bookMark: {
+    type: [String],
+    default: [],
+  },
   createdAt: {
     type: Date,
     default: () => new Date(),

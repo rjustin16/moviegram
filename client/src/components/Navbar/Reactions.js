@@ -4,6 +4,8 @@ import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
 import ThumbDownAltOutlined from "@material-ui/icons/ThumbDownAltOutlined";
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import BookmarkIcon from '@material-ui/icons/Bookmark';
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 
 export const Likes = ({ likecounter }) => {
   if (likecounter % 2 === 0) {
@@ -35,3 +37,14 @@ export const Watches = ({ watchcounter }) => {
     return <VisibilityIcon fontSize="small" />;
   }
 };
+
+export const BookMark = ({ bookmarkcounter }) => {
+    if (bookmarkcounter % 2 === 0) {
+        bookmarkcounter = bookmarkcounter + 1;
+      return <BookmarkBorderIcon fontSize="small" />;
+    } else {
+        bookmarkcounter = bookmarkcounter + 1;
+  
+      return <BookmarkIcon fontSize="small" />;
+    }
+  };
