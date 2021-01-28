@@ -66,6 +66,7 @@ const Post = ({ post, setCurrentId }) => {
       </CardContent>
       <CardActions className={classes.cardActions}>
         <Button
+        className={classes.buttonRoot}
           size="small"
           color="primary"
           disabled={!user?.result}
@@ -74,6 +75,7 @@ const Post = ({ post, setCurrentId }) => {
           <Likes post={post} user={user} />
         </Button>
         <Button
+        className={classes.buttonRoot}
           size="small"
           color="primary"
           disabled={!user?.result}
@@ -82,6 +84,7 @@ const Post = ({ post, setCurrentId }) => {
           <DisLikes post={post} user={user} />
         </Button>
         <Button
+        className={classes.buttonRoot}
           size="small"
           color="primary"
           disabled={!user?.result}
@@ -90,6 +93,7 @@ const Post = ({ post, setCurrentId }) => {
           <Watches post={post} user={user} />
         </Button>
         <Button
+        className={classes.buttonRoot}
           size="small"
           color="primary"
           disabled={!user?.result}
@@ -100,6 +104,7 @@ const Post = ({ post, setCurrentId }) => {
         {(user?.result?.googleId === post?.creator ||
           user?.result?._id === post?.creator) && (
           <Button
+          className={classes.buttonRoot}
             size="small"
             color="primary"
             onClick={() => dispatch(deletePost(post._id))}
